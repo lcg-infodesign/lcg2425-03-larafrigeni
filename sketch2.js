@@ -2,6 +2,7 @@ let data;
 let dataObj;
 let colors = [];
 let fontDIN;
+let scrollY = 0; 
 
 
 function preload() {
@@ -40,7 +41,7 @@ function draw() {
   for (let i = 0; i < rows; i++) {
     console.log("Disegnando blob:", i);
     let x = windowWidth / 2; // Posizione x al centro della finestra
-    let y = i * spacing + spacing / 2; // Posizione y in base a indice
+    let y = i * spacing + spacing / 2 + scrollY; // Aggiungi scrollY alla posizione y
     
     // Diametro palla = "area"
     let areaValue = data.getNum(i, "area"); 
@@ -82,6 +83,12 @@ function draw() {
 // Funzione Palla
 function drawPalla(x, y, diametro) {
   ellipse(x, y, diametro, diametro);
+}
+
+// scroll
+function mouseWheel(event) {
+  scrollY -= event.delta; 
+  return false; 
 }
 
 
